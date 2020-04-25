@@ -1,7 +1,7 @@
-# MERN Boilerplate
+# Buzz
 MongoDB Express.js React.js Node.js
 
-A Full MERN Stack Boilerplate for Web Apps. Includes a local authentication system using passport. User is given a simple profile with Full Name and Profile Picture. User is also able to reset password and username case.
+Buzz incentivizes customers to spread word of your brand in exchange for a portion of any referred purchase. 
 
 ## Requirements
 
