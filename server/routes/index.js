@@ -4,14 +4,16 @@ const path = require('path');
 const auth         = require('./auth');
 const user         = require('./user');
 const users        = require('./users');
-const todos        = require('./todos');
+const company        = require('./company');
+
 
 const router = express.Router();
 
 router.use('/api/auth', auth);
 router.use('/api/user', user);
 router.use('/api/users', users);
-router.use('/api/todos', todos);
+router.use('/api/company', company);
+
 
 router.get('/api/tags', (req, res) => {
   res.send([

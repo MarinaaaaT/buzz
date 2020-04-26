@@ -26,10 +26,6 @@ export default function Navigation({ pathname }) {
     ? pathname === '/home'
     : R.slice(0, 6, pathname) === '/home/';
 
-  const isTodo = (pathname.length === 5)
-    ? pathname === '/todo'
-    : R.slice(0, 6, pathname) === '/todo/';
-
   const isSettings = (pathname.length === 9)
     ? pathname === '/settings'
     : R.slice(0, 10, pathname) === '/settings/';
@@ -39,13 +35,6 @@ export default function Navigation({ pathname }) {
     'is-tab': true,
     'is-hidden-mobile': true,
     'is-active': isHome,
-  });
-
-  const todoItemClasses = classNames({
-    'navbar-item': true,
-    'is-tab': true,
-    'is-hidden-mobile': true,
-    'is-active': isTodo,
   });
 
   const settingsItemClasses = classNames({
@@ -99,11 +88,6 @@ export default function Navigation({ pathname }) {
               <Link to="/home" className={homeItemClasses}>
                 <h6 className="title is-6">
                   Home
-                </h6>
-              </Link>
-              <Link to="/todo" className={todoItemClasses}>
-                <h6 className="title is-6">
-                  Todo
                 </h6>
               </Link>
               <Link to="/settings" className={settingsItemClasses}>
