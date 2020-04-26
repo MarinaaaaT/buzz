@@ -13,6 +13,18 @@ export const postLogin = user =>
     .then(handleSuccess)
     .catch(handleError);
 
+export const postCompanyRegister = company =>
+  request.post('/api/auth/registerCompany')
+    .send(company)
+    .then(handleSuccess)
+    .catch(handleError);
+
+export const postCompanyLogin = company =>
+  request.post('/api/auth/loginCompany')
+    .send(company)
+    .then(handleSuccess)
+    .catch(handleError);
+
 export const postLogout = () =>
   request.post('/api/auth/logout')
     .then(handleSuccess)

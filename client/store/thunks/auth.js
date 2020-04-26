@@ -4,6 +4,7 @@ import Notifications from 'react-notification-system-redux';
 
 import { postRegister, postLogin, postLogout } from '_api/auth';
 import { login, logout } from '_actions/user';
+import { loginCompany, logoutCompany } from 'actions/company';
 
 import { dispatchError } from '_utils/api';
 
@@ -40,6 +41,50 @@ export const attemptLogout = () => dispatch =>
   postLogout()
     .then(data => {
       dispatch(logout());
+      dispatch(Notifications.success({
+        title: 'Success!',
+        message: data.message,
+        position: 'tr',
+        autoDismiss: 3,
+      }));
+      dispatch(push('/login'));
+      return data;
+    })
+    .catch(dispatchError(dispatch));
+
+export const attemptCompanyLogin = company => dispatch =>
+  postCompanyLogin(company)
+    .then(data => {
+      dispatch(loginCompany(snakeToCamelCase(data.company)));
+      dispatch(Notifications.success({
+        title: 'Success!',
+        message: data.message,
+        position: 'tr',
+        autoDismiss: 3,
+      }));
+      dispatch(push('/home'));
+      return data;
+    })
+    .catch(dispatchError(dispatch));
+
+export const attemptCompanyRegister = newCompany => dispatch =>
+  postCompanyRegister(newCompany)
+    .then(data => {
+      dispatch(Notifications.success({
+        title: 'Success!',
+        message: data.message,
+        position: 'tr',
+        autoDismiss: 3,
+      }));
+      return dispatch(attemptCompanyLogin(newCompany));
+    })
+    .then(() => dispatch(push('/settings')))
+    .catch(dispatchError(dispatch));
+
+export const attemptCompanyLogout = () => dispatch =>
+  postLogout()
+    .then(data => {
+      dispatch(logoutCompany());
       dispatch(Notifications.success({
         title: 'Success!',
         message: data.message,
